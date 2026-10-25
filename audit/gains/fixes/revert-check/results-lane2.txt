@@ -1,0 +1,86 @@
+== GR1-16 | files ['test/audit/gains/R1PoC.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: the resting order is cancelled] test_GR1_16_fullStopCancelsRestingOrders() (gas: 1271576)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 14.14ms (2.26ms CPU time)
+Ran 1 test suite in 18.95ms (14.14ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: the resting order is cancelled] test_GR1_16_fullStopCancelsRestingOrders() (gas: 1271576)
+== GR1-23 | files ['test/audit/gains/R1PoC.t.sol', 'test/audit/gains/xreview/XReview.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: NavMoved(1002283 [1.002e6], 2739)] test_GR1_23_dustCheckpointDoesNotFreezeSettle() (gas: 2510212)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 13.95ms (3.61ms CPU time)
+Ran 1 test for test/audit/gains/xreview/XReview.t.sol:XReviewTest
+[FAIL: NavMoved(1002283 [1.002e6], 2739)] test_GR1_23_dustCheckpointNormalSettleRuns() (gas: 3712261)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 14.38ms (4.09ms CPU time)
+Ran 2 test suites in 16.81ms (28.33ms CPU time): 0 tests passed, 2 failed, 0 skipped (2 total tests)
+[FAIL: NavMoved(1002283 [1.002e6], 2739)] test_GR1_23_dustCheckpointDoesNotFreezeSettle() (gas: 2510212)
+[FAIL: NavMoved(1002283 [1.002e6], 2739)] test_GR1_23_dustCheckpointNormalSettleRuns() (gas: 3712261)
+== GR1-24 | files ['test/audit/gains/R1PoC.t.sol', 'test/audit/gains/nav/NavUnit.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/nav/NavUnit.t.sol:NavUnitTest
+[FAIL: GR1-24: saturates, no wrap: 844574407370954 != 18446744073709551615] test_GR1_24_priceAfterImpactSaturatesAndReadCapsAtMaxPrice() (gas: 9552)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 7.19ms (150.80Âµs CPU time)
+Ran 2 tests for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: next call did not revert as expected] test_GR1_24_readRefusesAPriceWhoseBandEdgeWraps() (gas: 87483)
+[FAIL: next call did not revert as expected] test_GR1_24_shortNotValuedAtAProfitWhenTheFeedSpikes() (gas: 1560534)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 9.20ms (1.89ms CPU time)
+Ran 2 test suites in 11.62ms (16.39ms CPU time): 0 tests passed, 3 failed, 0 skipped (3 total tests)
+[FAIL: next call did not revert as expected] test_GR1_24_readRefusesAPriceWhoseBandEdgeWraps() (gas: 87483)
+[FAIL: next call did not revert as expected] test_GR1_24_shortNotValuedAtAProfitWhenTheFeedSpikes() (gas: 1560534)
+[FAIL: GR1-24: saturates, no wrap: 844574407370954 != 18446744073709551615] test_GR1_24_priceAfterImpactSaturatesAndReadCapsAtMaxPrice() (gas: 9552)
+== GR1-28 | files ['test/audit/gains/lifecycle/LC_PendingFork.t.sol', 'test/audit/gains/nav/NavEconFork.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/nav/NavEconFork.t.sol:NavEconForkTest
+[FAIL: GR1-28: valued with SOL's gov fee: 499574946 != 499957495] test_GR1_28_fork_pendingSolIncreaseUsesTradesOwnPairFee() (block: 515219884) (gas: 10725388)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 489.06ms (39.50ms CPU time)
+Ran 1 test for test/audit/gains/lifecycle/LC_PendingFork.t.sol:LC_PendingForkTest
+[FAIL: GR1-28: the fee follows the trade's pair (33), not pair 0: 19965537064 != 19965919613] test_GR1_28_updateLeverageDecrease_solFeeOnTradesOwnPair() (block: 515219884) (gas: 8765430)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 587.47ms (37.58ms CPU time)
+Ran 2 test suites in 614.75ms (1.08s CPU time): 0 tests passed, 2 failed, 0 skipped (2 total tests)
+[FAIL: GR1-28: the fee follows the trade's pair (33), not pair 0: 19965537064 != 19965919613] test_GR1_28_updateLeverageDecrease_solFeeOnTradesOwnPair() (block: 515219884) (gas: 8765430)
+[FAIL: GR1-28: valued with SOL's gov fee: 499574946 != 499957495] test_GR1_28_fork_pendingSolIncreaseUsesTradesOwnPairFee() (block: 515219884) (gas: 10725388)
+== GR1-31 | files ['test/audit/gains/gov/Governance.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/gov/Governance.t.sol:GovGovernanceTest
+[FAIL: next call did not revert as expected] test_GR1_31_navBoundCoversDisallowedPairs_rotationStaysOpen() (gas: 1788224)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 13.74ms (2.15ms CPU time)
+Ran 1 test suite in 15.29ms (13.74ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: next call did not revert as expected] test_GR1_31_navBoundCoversDisallowedPairs_rotationStaysOpen() (gas: 1788224)
+== GR1-32 | files ['test/audit/gains/gov/HLRetest.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/gov/HLRetest.t.sol:GovHLRetestTest
+[FAIL: reset to the current epoch: 2 != 1] test_GR1_32_cancelledDeferredDepositLiftsTheRedeemBlock() (gas: 1423206)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 13.45ms (1.33ms CPU time)
+Ran 1 test suite in 15.52ms (13.45ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: reset to the current epoch: 2 != 1] test_GR1_32_cancelledDeferredDepositLiftsTheRedeemBlock() (gas: 1423206)
+== GR1-41 | files ['test/audit/gains/R1PoC.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: 3% (maxFlattenSlippageBps) for slippage 0, not 20%: 20000 != 3000] test_GR1_41_defaultFlattenCappedLikeACustomOne() (gas: 1221474)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 11.62ms (704.50Âµs CPU time)
+Ran 1 test suite in 17.47ms (11.62ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: 3% (maxFlattenSlippageBps) for slippage 0, not 20%: 20000 != 3000] test_GR1_41_defaultFlattenCappedLikeACustomOne() (gas: 1221474)
+== GR1-44 | files ['test/audit/gains/integration/IntegrationMock.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/integration/IntegrationMock.t.sol:IntegrationMockTest
+[FAIL: GR1-44: bounded, not 63/64 of the 50M given: 46222084 >= 2000000] test_GR1_44_writingFeedRevertsPriceStaleWithBoundedGas() (gas: 1023359649)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 9.71ms (4.02ms CPU time)
+Ran 1 test suite in 11.11ms (9.71ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: GR1-44: bounded, not 63/64 of the 50M given: 46222084 >= 2000000] test_GR1_44_writingFeedRevertsPriceStaleWithBoundedGas() (gas: 1023359649)
+== MINPOS | files ['test/audit/gains/fixes/R1Regression.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: OrderRejected("position below min")] test_policyDoesNotEnforcePairMinPositionSize() (gas: 990181)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 7.06ms (935.50Âµs CPU time)
+Ran 1 test suite in 13.39ms (7.06ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: OrderRejected("position below min")] test_policyDoesNotEnforcePairMinPositionSize() (gas: 990181)
+== MUT952 | files ['test/audit/gains/fixes/R1Regression.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: run 2 starts at its own epoch: 1 != 4] test_MUT952_twoSeparateCarryRunsEachPricedInItsOwnEpoch() (gas: 8689823)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 27.42ms (16.87ms CPU time)
+Ran 1 test suite in 29.47ms (27.42ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: run 2 starts at its own epoch: 1 != 4] test_MUT952_twoSeparateCarryRunsEachPricedInItsOwnEpoch() (gas: 8689823)
+== MUT207 | files ['test/audit/gains/fixes/R1Regression.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: long at mark + band] test_MUT207_checkOrderBandEdgesBothSides() (gas: 104557)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 6.46ms (231.90Âµs CPU time)
+Ran 1 test suite in 10.79ms (6.46ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: long at mark + band] test_MUT207_checkOrderBandEdgesBothSides() (gas: 104557)
+== MUT753 | files ['test/audit/gains/fixes/R1Regression.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: nothing pending after the apply: 1700172800 != 0] test_MUT753_applyTimelockDelayClearsThePending() (gas: 295803)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 7.02ms (324.60Âµs CPU time)
+Ran 1 test suite in 11.65ms (7.02ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: nothing pending after the apply: 1700172800 != 0] test_MUT753_applyTimelockDelayClearsThePending() (gas: 295803)

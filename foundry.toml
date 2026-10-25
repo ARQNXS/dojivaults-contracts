@@ -1,0 +1,32 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+# Static solc binary. Override locally with FOUNDRY_SOLC or remove this line to let forge auto-download 0.8.28.
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+evm_version = "cancun"
+remappings = [
+  "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+  "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+  "forge-std/=lib/forge-std/src/",
+]
+
+# DeployFactory reads link references from ./out and writes deployments/<mainnet|testnet|local-<id>>.json
+# RiskParity.t.sol reads (and with RISK_PARITY_WRITE=true writes) test/fixtures/risk-parity.json
+fs_permissions = [{ access = "read-write", path = "./deployments" }, { access = "read", path = "./out" }, { access = "read-write", path = "./test/fixtures" }]
+
+[fuzz]
+runs = 512
+
+[rpc_endpoints]
+hyperevm = "https://rpc.hyperliquid.xyz/evm"
+hyperevm_testnet = "https://rpc.hyperliquid-testnet.xyz/evm"
+arbitrum = "${ARBITRUM_RPC_URL}"
+arbitrum_sepolia = "${ARBITRUM_SEPOLIA_RPC_URL}"
+
+[lint]
+lint_on_build = false

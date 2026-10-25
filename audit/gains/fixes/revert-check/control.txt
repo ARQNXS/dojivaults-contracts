@@ -1,0 +1,94 @@
+Compiling 29 files with Solc 0.8.28
+Solc 0.8.28 finished in 204.18s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to pure
+   --> src/gains/GainsVaultLens.sol:222:5:
+    |
+222 |     function maxPositions(GainsVault v) external view returns (uint256) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 1 test for test/audit/gains/gov/HLRetest.t.sol:GovHLRetestTest
+[PASS] test_GR1_32_cancelledDeferredDepositLiftsTheRedeemBlock() (gas: 1877037)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 21.87ms (3.04ms CPU time)
+
+Ran 4 tests for test/audit/gains/gov/Governance.t.sol:GovGovernanceTest
+[PASS] test_GR1_10_sequencerFeedRotatesThroughTheTimelock_zeroRefused() (gas: 21812)
+[PASS] test_GR1_12_policyOwnershipFollowsAVaultTransfer() (gas: 1979121)
+[PASS] test_GR1_30_policyRenounceRevertsOwnerKeepsTheVeto() (gas: 404342)
+[PASS] test_GR1_31_navBoundCoversDisallowedPairs_rotationStaysOpen() (gas: 2387273)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 25.72ms (8.32ms CPU time)
+
+Ran 3 tests for test/audit/gains/nav/NavUnit.t.sol:NavUnitTest
+[PASS] test_GR1_13_decimalsChangeRevertsPriceStale() (gas: 2372929)
+[PASS] test_GR1_15_cancelOptionNoLongerProfitable() (gas: 2965834)
+[PASS] test_GR1_24_priceAfterImpactSaturatesAndReadCapsAtMaxPrice() (gas: 1688976)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 29.99ms (14.69ms CPU time)
+
+Ran 10 tests for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[PASS] test_GR1_03_tradeAboveItsLiquidationPriceIsValued() (gas: 1537678)
+[PASS] test_GR1_03_tradeWithinTheBandOfLiquidationIsZero() (gas: 1495512)
+[PASS] test_GR1_08_flattenIndicesSameCallersAsFlatten() (gas: 99347)
+[PASS] test_GR1_08_flattenIndicesWorksWhenTheTradeListIsUnreadable() (gas: 2399974)
+[PASS] test_GR1_10_factoryRefusesAZeroSequencerFeed() (gas: 21801)
+[PASS] test_GR1_10_sequencerFeedRotatesThroughTheTimelock() (gas: 2335088)
+[PASS] test_MUT207_checkOrderBandEdgesBothSides() (gas: 245372)
+[PASS] test_MUT753_applyTimelockDelayClearsThePending() (gas: 325669)
+[PASS] test_MUT952_twoSeparateCarryRunsEachPricedInItsOwnEpoch() (gas: 10777876)
+[PASS] test_policyDoesNotEnforcePairMinPositionSize() (gas: 1670991)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 52.16ms (54.93ms CPU time)
+
+Ran 4 tests for test/audit/gains/R1NavBias.t.sol:R1NavBiasTest
+[PASS] test_GR1_02_depositWhileOpenRedeemWhenFlat_3x() (gas: 3695539)
+[PASS] test_GR1_02_depositWhileOpenRedeemWhenFlat_atTheNavBound() (gas: 4895588)
+[PASS] test_GR1_02_repeatedCyclesUnprofitable() (gas: 15105826)
+[PASS] test_GR1_02_settleThatMintsWaitsAnHour() (gas: 1711380)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 60.67ms (46.77ms CPU time)
+
+Ran 4 tests for test/audit/gains/integration/IntegrationMock.t.sol:IntegrationMockTest
+[PASS] test_GR1_08_pendingOrderLayoutChange_navFlattenAndOperatorReduceWork() (gas: 6942641)
+[PASS] test_GR1_08_tradeLayoutChange_navSettleAndFlattenWorkUnchanged() (gas: 10514580)
+[PASS] test_GR1_08_unreadableLayout_revertsDiamondLayoutChanged_flattenIndicesCloses() (gas: 3594536)
+[PASS] test_GR1_44_writingFeedRevertsPriceStaleWithBoundedGas() (gas: 2910611)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 64.74ms (76.93ms CPU time)
+
+Ran 2 tests for test/audit/gains/xreview/XReview.t.sol:XReviewTest
+[PASS] test_GR1_02_intradayCyclesNoLongerTakeFromTheHolder() (gas: 33733397)
+[PASS] test_GR1_23_dustCheckpointNormalSettleRuns() (gas: 3850792)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 80.32ms (70.70ms CPU time)
+
+Ran 9 tests for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[PASS] test_GR1_01_secondLeverageOnlyIncreaseRefused() (gas: 3214043)
+[PASS] test_GR1_01_tenConcurrentLeverageIncreasesRefusedAtThePolicy() (gas: 18680684)
+[PASS] test_GR1_04_decoyClosesNoLongerBlockTheEmergencySettle() (gas: 2878277)
+[PASS] test_GR1_04_holdingOrderBlocksAtMostOneTimeout() (gas: 2178052)
+[PASS] test_GR1_16_fullStopCancelsRestingOrders() (gas: 1322940)
+[PASS] test_GR1_23_dustCheckpointDoesNotFreezeSettle() (gas: 2518489)
+[PASS] test_GR1_24_readRefusesAPriceWhoseBandEdgeWraps() (gas: 84670)
+[PASS] test_GR1_24_shortNotValuedAtAProfitWhenTheFeedSpikes() (gas: 1430874)
+[PASS] test_GR1_41_defaultFlattenCappedLikeACustomOne() (gas: 2831554)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 107.85ms (117.20ms CPU time)
+
+Ran 4 tests for test/audit/gains/lifecycle/LC_GriefFork.t.sol:LC_GriefForkTest
+[PASS] test_GR1_04_decoyClosesDoNotHoldEmergencySettle() (gas: 15444089)
+[PASS] test_GR1_04_exitRoleClosesAndReducesDoNotHoldSettle() (gas: 13885051)
+[PASS] test_GR1_04_openInFlightHoldsSettleAtMostOneTimeout() (gas: 8879217)
+[PASS] test_GR1_04_overdueEmergencyNotBlockedByPendingClose() (gas: 7558342)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 710.88ms (316.17ms CPU time)
+
+Ran 6 tests for test/audit/gains/nav/NavEconFork.t.sol:NavEconForkTest
+[PASS] test_GR1_02_fork_controlSameNotionalAt6x_gainsNothing() (gas: 16148782)
+[PASS] test_GR1_02_fork_realFees_10x_depositInWhileOpenGainsNothing() (gas: 30349001)
+[PASS] test_GR1_02_fork_realFees_3x_depositInWhileOpenGainsNothing() (gas: 30348931)
+[PASS] test_GR1_03_fork_confederateCannotExtractAtTheCliff() (gas: 24573346)
+[PASS] test_GR1_03_fork_highLeverageTradeValuedAtWhatGainsPays() (gas: 21841086)
+[PASS] test_GR1_28_fork_pendingSolIncreaseUsesTradesOwnPairFee() (gas: 10473188)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 762.63ms (910.18ms CPU time)
+
+Ran 3 tests for test/audit/gains/lifecycle/LC_PendingFork.t.sol:LC_PendingForkTest
+[PASS] test_GR1_01_leverageOnlyIncrease_countedWhilePending() (gas: 12484480)
+[PASS] test_GR1_01_leverageOnlyIncreases_cannotBypassVaultLeverage() (gas: 33709902)
+[PASS] test_GR1_28_updateLeverageDecrease_solFeeOnTradesOwnPair() (gas: 10080562)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 800.70ms (409.39ms CPU time)
+
+Ran 11 test suites in 829.35ms (2.72s CPU time): 50 tests passed, 0 failed, 0 skipped (50 total tests)

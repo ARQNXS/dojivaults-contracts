@@ -1,0 +1,163 @@
+== CONTROL | files ['test/audit/gains/R1NavBias.t.sol', 'test/audit/gains/R1PoC.t.sol', 'test/audit/gains/fixes/R1Regression.t.sol', 'test/audit/gains/gov/Governance.t.sol', 'test/audit/gains/gov/HLRetest.t.sol', 'test/audit/gains/integration/IntegrationMock.t.sol', 'test/audit/gains/lifecycle/LC_GriefFork.t.sol', 'test/audit/gains/lifecycle/LC_PendingFork.t.sol', 'test/audit/gains/nav/NavEconFork.t.sol', 'test/audit/gains/nav/NavUnit.t.sol', 'test/audit/gains/xreview/XReview.t.sol'] | exit 0
+Ran 1 test for test/audit/gains/gov/HLRetest.t.sol:GovHLRetestTest
+[PASS] test_GR1_32_cancelledDeferredDepositLiftsTheRedeemBlock() (gas: 1877037)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 21.76ms (3.08ms CPU time)
+Ran 4 tests for test/audit/gains/gov/Governance.t.sol:GovGovernanceTest
+[PASS] test_GR1_10_sequencerFeedRotatesThroughTheTimelock_zeroRefused() (gas: 21812)
+[PASS] test_GR1_12_policyOwnershipFollowsAVaultTransfer() (gas: 1979121)
+[PASS] test_GR1_30_policyRenounceRevertsOwnerKeepsTheVeto() (gas: 404342)
+[PASS] test_GR1_31_navBoundCoversDisallowedPairs_rotationStaysOpen() (gas: 2387273)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 31.27ms (9.69ms CPU time)
+Ran 3 tests for test/audit/gains/nav/NavUnit.t.sol:NavUnitTest
+[PASS] test_GR1_13_decimalsChangeRevertsPriceStale() (gas: 2372929)
+[PASS] test_GR1_15_cancelOptionNoLongerProfitable() (gas: 2965834)
+[PASS] test_GR1_24_priceAfterImpactSaturatesAndReadCapsAtMaxPrice() (gas: 1688976)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 28.58ms (14.49ms CPU time)
+Ran 4 tests for test/audit/gains/integration/IntegrationMock.t.sol:IntegrationMockTest
+[PASS] test_GR1_08_pendingOrderLayoutChange_navFlattenAndOperatorReduceWork() (gas: 6942641)
+[PASS] test_GR1_08_tradeLayoutChange_navSettleAndFlattenWorkUnchanged() (gas: 10514580)
+[PASS] test_GR1_08_unreadableLayout_revertsDiamondLayoutChanged_flattenIndicesCloses() (gas: 3594536)
+[PASS] test_GR1_44_writingFeedRevertsPriceStaleWithBoundedGas() (gas: 2910611)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 85.00ms (106.38ms CPU time)
+Ran 10 tests for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[PASS] test_GR1_03_tradeAboveItsLiquidationPriceIsValued() (gas: 1537678)
+[PASS] test_GR1_03_tradeWithinTheBandOfLiquidationIsZero() (gas: 1495512)
+[PASS] test_GR1_08_flattenIndicesSameCallersAsFlatten() (gas: 99347)
+[PASS] test_GR1_08_flattenIndicesWorksWhenTheTradeListIsUnreadable() (gas: 2399974)
+[PASS] test_GR1_10_factoryRefusesAZeroSequencerFeed() (gas: 21801)
+[PASS] test_GR1_10_sequencerFeedRotatesThroughTheTimelock() (gas: 2335088)
+[PASS] test_MUT207_checkOrderBandEdgesBothSides() (gas: 245372)
+[PASS] test_MUT753_applyTimelockDelayClearsThePending() (gas: 325669)
+[PASS] test_MUT952_twoSeparateCarryRunsEachPricedInItsOwnEpoch() (gas: 10777876)
+[PASS] test_policyDoesNotEnforcePairMinPositionSize() (gas: 1670991)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 82.88ms (58.16ms CPU time)
+Ran 4 tests for test/audit/gains/R1NavBias.t.sol:R1NavBiasTest
+[PASS] test_GR1_02_depositWhileOpenRedeemWhenFlat_3x() (gas: 3695539)
+[PASS] test_GR1_02_depositWhileOpenRedeemWhenFlat_atTheNavBound() (gas: 4895588)
+[PASS] test_GR1_02_repeatedCyclesUnprofitable() (gas: 15105826)
+[PASS] test_GR1_02_settleThatMintsWaitsAnHour() (gas: 1711380)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 85.22ms (71.60ms CPU time)
+Ran 2 tests for test/audit/gains/xreview/XReview.t.sol:XReviewTest
+[PASS] test_GR1_02_intradayCyclesNoLongerTakeFromTheHolder() (gas: 33733397)
+== GR1-01 | files ['test/audit/gains/R1PoC.t.sol', 'test/audit/gains/lifecycle/LC_PendingFork.t.sol'] | exit 1
+Ran 2 tests for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: the pending +197.5k counts: 99999999999 !~= 297500000000 (max delta: 1.0000000000000000%, real delta: 66.3865546221848739%)] test_GR1_01_secondLeverageOnlyIncreaseRefused() (gas: 2849163)
+[FAIL: only the first fits the 3x policy: 10 != 1] test_GR1_01_tenConcurrentLeverageIncreasesRefusedAtThePolicy() (gas: 18640703)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 79.22ms (77.82ms CPU time)
+Ran 2 tests for test/audit/gains/lifecycle/LC_PendingFork.t.sol:LC_PendingForkTest
+[FAIL: GR1-01: pending +10,000 USDC of size counted (1,000 x 10): 0 != 10000000000] test_GR1_01_leverageOnlyIncrease_countedWhilePending() (block: 515219884) (gas: 8939963)
+[FAIL: the pending increase is counted: 0 != 23713000000] test_GR1_01_leverageOnlyIncreases_cannotBypassVaultLeverage() (block: 515219884) (gas: 23045483)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 623.80ms (155.69ms CPU time)
+Ran 2 test suites in 655.76ms (703.02ms CPU time): 0 tests passed, 4 failed, 0 skipped (4 total tests)
+[FAIL: the pending +197.5k counts: 99999999999 !~= 297500000000 (max delta: 1.0000000000000000%, real delta: 66.3865546221848739%)] test_GR1_01_secondLeverageOnlyIncreaseRefused() (gas: 2849163)
+[FAIL: only the first fits the 3x policy: 10 != 1] test_GR1_01_tenConcurrentLeverageIncreasesRefusedAtThePolicy() (gas: 18640703)
+[FAIL: GR1-01: pending +10,000 USDC of size counted (1,000 x 10): 0 != 10000000000] test_GR1_01_leverageOnlyIncrease_countedWhilePending() (block: 515219884) (gas: 8939963)
+[FAIL: the pending increase is counted: 0 != 23713000000] test_GR1_01_leverageOnlyIncreases_cannotBypassVaultLeverage() (block: 515219884) (gas: 23045483)
+== GR1-02a | files ['test/audit/gains/R1NavBias.t.sol', 'test/audit/gains/nav/NavEconFork.t.sol', 'test/audit/gains/nav/NavUnit.t.sol', 'test/audit/gains/xreview/XReview.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/nav/NavUnit.t.sol:NavUnitTest
+[FAIL: GR1-15: but bob is still below his deposit: the option costs more than it pays: 100075075225 >= 100000000000] test_GR1_15_cancelOptionNoLongerProfitable() (gas: 3123277)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 19.39ms (6.87ms CPU time)
+Ran 3 tests for test/audit/gains/R1NavBias.t.sol:R1NavBiasTest
+[FAIL: the holder loses at most rounding: 99698869670 < 100000000000] test_GR1_02_depositWhileOpenRedeemWhenFlat_3x() (gas: 3905355)
+[FAIL: the holder loses at most rounding: 98733951797 < 100000000000] test_GR1_02_depositWhileOpenRedeemWhenFlat_atTheNavBound() (gas: 5108843)
+[FAIL: every cycle costs the depositor: 1005997330980 >= 1000000000000] test_GR1_02_repeatedCyclesUnprofitable() (gas: 15640946)
+Suite result: FAILED. 0 passed; 3 failed; 0 skipped; finished in 37.05ms (44.21ms CPU time)
+Ran 1 test for test/audit/gains/xreview/XReview.t.sol:XReviewTest
+[FAIL: repeating the loop is unprofitable: 1004750655485 >= 1000000000000] test_GR1_02_intradayCyclesNoLongerTakeFromTheHolder() (gas: 34802065)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 75.15ms (62.65ms CPU time)
+Ran 3 tests for test/audit/gains/nav/NavEconFork.t.sol:NavEconForkTest
+[FAIL: panic: arithmetic underflow or overflow (0x11)] test_GR1_02_fork_controlSameNotionalAt6x_gainsNothing() (block: 515219884) (gas: 16672686)
+[FAIL: GR1-02: bob gains nothing at 10x either: 100911188730 > 100000000000] test_GR1_02_fork_realFees_10x_depositInWhileOpenGainsNothing() (block: 515219884) (gas: 31303232)
+[FAIL: GR1-02: bob gains nothing with no price move: 100270766603 > 100000000000] test_GR1_02_fork_realFees_3x_depositInWhileOpenGainsNothing() (block: 515219884) (gas: 31303162)
+Suite result: FAILED. 0 passed; 3 failed; 0 skipped; finished in 681.80ms (374.20ms CPU time)
+Ran 4 test suites in 712.86ms (813.38ms CPU time): 0 tests passed, 8 failed, 0 skipped (8 total tests)
+[FAIL: the holder loses at most rounding: 99698869670 < 100000000000] test_GR1_02_depositWhileOpenRedeemWhenFlat_3x() (gas: 3905355)
+[FAIL: the holder loses at most rounding: 98733951797 < 100000000000] test_GR1_02_depositWhileOpenRedeemWhenFlat_atTheNavBound() (gas: 5108843)
+[FAIL: every cycle costs the depositor: 1005997330980 >= 1000000000000] test_GR1_02_repeatedCyclesUnprofitable() (gas: 15640946)
+[FAIL: panic: arithmetic underflow or overflow (0x11)] test_GR1_02_fork_controlSameNotionalAt6x_gainsNothing() (block: 515219884) (gas: 16672686)
+[FAIL: GR1-02: bob gains nothing at 10x either: 100911188730 > 100000000000] test_GR1_02_fork_realFees_10x_depositInWhileOpenGainsNothing() (block: 515219884) (gas: 31303232)
+[FAIL: GR1-02: bob gains nothing with no price move: 100270766603 > 100000000000] test_GR1_02_fork_realFees_3x_depositInWhileOpenGainsNothing() (block: 515219884) (gas: 31303162)
+[FAIL: GR1-15: but bob is still below his deposit: the option costs more than it pays: 100075075225 >= 100000000000] test_GR1_15_cancelOptionNoLongerProfitable() (gas: 3123277)
+[FAIL: repeating the loop is unprofitable: 1004750655485 >= 1000000000000] test_GR1_02_intradayCyclesNoLongerTakeFromTheHolder() (gas: 34802065)
+== GR1-02b | files ['test/audit/gains/R1NavBias.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/R1NavBias.t.sol:R1NavBiasTest
+[FAIL: next call did not revert as expected] test_GR1_02_settleThatMintsWaitsAnHour() (gas: 1449916)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 9.83ms (2.26ms CPU time)
+Ran 1 test suite in 13.09ms (9.83ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: next call did not revert as expected] test_GR1_02_settleThatMintsWaitsAnHour() (gas: 1449916)
+== GR1-03 | files ['test/audit/gains/fixes/R1Regression.t.sol', 'test/audit/gains/nav/NavEconFork.t.sol'] | exit 1
+Ran 2 tests for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: valued: P is above L: 0 <= 0] test_GR1_03_tradeAboveItsLiquidationPriceIsValued() (gas: 1572902)
+[PASS] test_GR1_03_tradeWithinTheBandOfLiquidationIsZero() (gas: 1495724)
+Suite result: FAILED. 1 passed; 1 failed; 0 skipped; finished in 10.58ms (5.65ms CPU time)
+Ran 2 tests for test/audit/gains/nav/NavEconFork.t.sol:NavEconForkTest
+[PASS] test_GR1_03_fork_confederateCannotExtractAtTheCliff() (gas: 15387647)
+[FAIL: GR1-03: valued at the open, not 0: 0 <= 135000000] test_GR1_03_fork_highLeverageTradeValuedAtWhatGainsPays() (block: 515219884) (gas: 7261949)
+Suite result: FAILED. 1 passed; 1 failed; 0 skipped; finished in 517.99ms (84.31ms CPU time)
+Ran 2 test suites in 563.99ms (528.57ms CPU time): 2 tests passed, 2 failed, 0 skipped (4 total tests)
+[FAIL: valued: P is above L: 0 <= 0] test_GR1_03_tradeAboveItsLiquidationPriceIsValued() (gas: 1572902)
+[FAIL: GR1-03: valued at the open, not 0: 0 <= 135000000] test_GR1_03_fork_highLeverageTradeValuedAtWhatGainsPays() (block: 515219884) (gas: 7261949)
+== GR1-04a | files ['test/audit/gains/R1PoC.t.sol', 'test/audit/gains/lifecycle/LC_GriefFork.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: but it holds no collateral] test_GR1_04_decoyClosesNoLongerBlockTheEmergencySettle() (gas: 2599425)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 14.94ms (6.44ms CPU time)
+Ran 3 tests for test/audit/gains/lifecycle/LC_GriefFork.t.sol:LC_GriefForkTest
+[FAIL: GR1-04: closes do not count as orders that hold settle] test_GR1_04_decoyClosesDoNotHoldEmergencySettle() (block: 515219884) (gas: 12793850)
+[FAIL: a close and a collateral reduce hold nothing] test_GR1_04_exitRoleClosesAndReducesDoNotHoldSettle() (block: 515219884) (gas: 12815537)
+[FAIL: OrdersPending()] test_GR1_04_overdueEmergencyNotBlockedByPendingClose() (block: 515219884) (gas: 6975952)
+Suite result: FAILED. 0 passed; 3 failed; 0 skipped; finished in 495.75ms (111.01ms CPU time)
+Ran 2 test suites in 523.84ms (510.68ms CPU time): 0 tests passed, 4 failed, 0 skipped (4 total tests)
+[FAIL: but it holds no collateral] test_GR1_04_decoyClosesNoLongerBlockTheEmergencySettle() (gas: 2599425)
+[FAIL: GR1-04: closes do not count as orders that hold settle] test_GR1_04_decoyClosesDoNotHoldEmergencySettle() (block: 515219884) (gas: 12793850)
+[FAIL: a close and a collateral reduce hold nothing] test_GR1_04_exitRoleClosesAndReducesDoNotHoldSettle() (block: 515219884) (gas: 12815537)
+[FAIL: OrdersPending()] test_GR1_04_overdueEmergencyNotBlockedByPendingClose() (block: 515219884) (gas: 6975952)
+== GR1-04b | files ['test/audit/gains/R1PoC.t.sol', 'test/audit/gains/lifecycle/LC_GriefFork.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/R1PoC.t.sol:R1PoCTest
+[FAIL: next call did not revert as expected] test_GR1_04_holdingOrderBlocksAtMostOneTimeout() (gas: 1936043)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 12.81ms (2.69ms CPU time)
+Ran 1 test for test/audit/gains/lifecycle/LC_GriefFork.t.sol:LC_GriefForkTest
+[FAIL: assertion failed] test_GR1_04_openInFlightHoldsSettleAtMostOneTimeout() (block: 515219884) (gas: 9547183)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 563.45ms (33.01ms CPU time)
+Ran 2 test suites in 591.47ms (576.26ms CPU time): 0 tests passed, 2 failed, 0 skipped (2 total tests)
+[FAIL: next call did not revert as expected] test_GR1_04_holdingOrderBlocksAtMostOneTimeout() (gas: 1936043)
+[FAIL: assertion failed] test_GR1_04_openInFlightHoldsSettleAtMostOneTimeout() (block: 515219884) (gas: 9547183)
+== GR1-08 | files ['test/audit/gains/fixes/R1Regression.t.sol', 'test/audit/gains/integration/IntegrationMock.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: next call did not revert as expected] test_GR1_08_flattenIndicesWorksWhenTheTradeListIsUnreadable() (gas: 1954687)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 12.62ms (3.55ms CPU time)
+Ran 3 tests for test/audit/gains/integration/IntegrationMock.t.sol:IntegrationMockTest
+[FAIL: EvmError: Revert] test_GR1_08_pendingOrderLayoutChange_navFlattenAndOperatorReduceWork() (gas: 2994873)
+[FAIL: EvmError: Revert] test_GR1_08_tradeLayoutChange_navSettleAndFlattenWorkUnchanged() (gas: 2868197)
+[FAIL: next call did not revert as expected] test_GR1_08_unreadableLayout_revertsDiamondLayoutChanged_flattenIndicesCloses() (gas: 2249764)
+Suite result: FAILED. 0 passed; 3 failed; 0 skipped; finished in 15.74ms (17.77ms CPU time)
+Ran 2 test suites in 17.94ms (28.36ms CPU time): 0 tests passed, 4 failed, 0 skipped (4 total tests)
+[FAIL: next call did not revert as expected] test_GR1_08_flattenIndicesWorksWhenTheTradeListIsUnreadable() (gas: 1954687)
+[FAIL: EvmError: Revert] test_GR1_08_pendingOrderLayoutChange_navFlattenAndOperatorReduceWork() (gas: 2994873)
+[FAIL: EvmError: Revert] test_GR1_08_tradeLayoutChange_navSettleAndFlattenWorkUnchanged() (gas: 2868197)
+[FAIL: next call did not revert as expected] test_GR1_08_unreadableLayout_revertsDiamondLayoutChanged_flattenIndicesCloses() (gas: 2249764)
+== GR1-10 | files ['test/audit/gains/fixes/R1Regression.t.sol', 'test/audit/gains/gov/Governance.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/gov/Governance.t.sol:GovGovernanceTest
+[FAIL: next call did not revert as expected] test_GR1_10_sequencerFeedRotatesThroughTheTimelock_zeroRefused() (gas: 198047)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 8.77ms (442.00Âµs CPU time)
+Ran 2 tests for test/audit/gains/fixes/R1Regression.t.sol:R1RegressionTest
+[FAIL: next call did not revert as expected] test_GR1_10_factoryRefusesAZeroSequencerFeed() (gas: 22035)
+[FAIL: assertion failed: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 != 0x92a6649Fdcc044DA968d94202465578a9371C7b1] test_GR1_10_sequencerFeedRotatesThroughTheTimelock() (gas: 2254775)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 9.71ms (2.57ms CPU time)
+Ran 2 test suites in 11.45ms (18.48ms CPU time): 0 tests passed, 3 failed, 0 skipped (3 total tests)
+[FAIL: next call did not revert as expected] test_GR1_10_factoryRefusesAZeroSequencerFeed() (gas: 22035)
+[FAIL: assertion failed: 0x1d1499e622D69689cdf9004d05Ec547d650Ff211 != 0x92a6649Fdcc044DA968d94202465578a9371C7b1] test_GR1_10_sequencerFeedRotatesThroughTheTimelock() (gas: 2254775)
+[FAIL: next call did not revert as expected] test_GR1_10_sequencerFeedRotatesThroughTheTimelock_zeroRefused() (gas: 198047)
+== GR1-12 | files ['test/audit/gains/gov/Governance.t.sol'] | exit 1
+Ran 2 tests for test/audit/gains/gov/Governance.t.sol:GovGovernanceTest
+[FAIL: the policy follows the vault: 0xC37d943d0d8941bd6fBb73C55d06cad97Df2552E != 0x3D0eF07Ef550d212dF4d442ee821cf6f3D70C7F1] test_GR1_12_policyOwnershipFollowsAVaultTransfer() (gas: 1532557)
+[FAIL: next call did not revert as expected] test_GR1_30_policyRenounceRevertsOwnerKeepsTheVeto() (gas: 163847)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 13.23ms (2.36ms CPU time)
+Ran 1 test suite in 14.85ms (13.23ms CPU time): 0 tests passed, 2 failed, 0 skipped (2 total tests)
+[FAIL: the policy follows the vault: 0xC37d943d0d8941bd6fBb73C55d06cad97Df2552E != 0x3D0eF07Ef550d212dF4d442ee821cf6f3D70C7F1] test_GR1_12_policyOwnershipFollowsAVaultTransfer() (gas: 1532557)
+[FAIL: next call did not revert as expected] test_GR1_30_policyRenounceRevertsOwnerKeepsTheVeto() (gas: 163847)
+== GR1-13 | files ['test/audit/gains/nav/NavUnit.t.sol'] | exit 1
+Ran 1 test for test/audit/gains/nav/NavUnit.t.sol:NavUnitTest
+[FAIL: next call did not revert as expected] test_GR1_13_decimalsChangeRevertsPriceStale() (gas: 1589529)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 7.98ms (1.56ms CPU time)
+Ran 1 test suite in 9.89ms (7.98ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+[FAIL: next call did not revert as expected] test_GR1_13_decimalsChangeRevertsPriceStale() (gas: 1589529)

@@ -1,0 +1,17 @@
+{
+  "name": "gains-nav-diff",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Round 1 review: independent TS reimplementation of the Gains trade close value (from @gainsnetwork/sdk) compared with GainsNav",
+  "type": "module",
+  "scripts": {
+    "diff": "tsx diff.ts"
+  },
+  "dependencies": {
+    "@gainsnetwork/sdk": "1.8.10"
+  },
+  "devDependencies": {
+    "tsx": "4.19.2",
+    "typescript": "5.6.3"
+  }
+}

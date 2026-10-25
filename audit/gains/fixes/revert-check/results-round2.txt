@@ -1,0 +1,11 @@
+# Round 2 reverted check (GV-01, GV-02, GV-03 undone together in the worktree after commit 2e80b50, restored with git checkout)
+Compiler run successful with warnings:
+[FAIL: next call did not revert as expected] test_GV01_fieldInsertedBeforePositionSize_revertsLayoutChanged() (gas: 3220599)
+[FAIL: Error != expected error: panic: division or modulo by zero (0x12) != DiamondLayoutChanged()] test_GV01_implausibleOpenTrade_revertsLayoutChanged() (gas: 3128479)
+[FAIL: next call did not revert as expected] test_GV01_openTradeWithImpossibleSize_revertsLayoutChanged() (gas: 3215976)
+[PASS] test_GV02_knownNonHoldingTypes_stillDoNotBlock() (gas: 1627614)
+[FAIL: unknown type: settle waits] test_GV02_unknownOrderType_blocksSettleAndCountsInNav() (gas: 2335290)
+[FAIL: next call did not revert as expected] test_GV03_graceBounded_factoryConstructorAndSetter() (gas: 45936)
+[FAIL: next call did not revert as expected] test_GV03_policySetterBoundsGrace() (gas: 62483)
+[FAIL: next call did not revert as expected] test_GV03_rotationAdoptsWhatWasQueued_notTheFactoryAtExecution() (gas: 860241)
+Suite result: FAILED. 1 passed; 7 failed; 0 skipped; finished in 18.84ms (42.09ms CPU time)

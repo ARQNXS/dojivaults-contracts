@@ -1,0 +1,99 @@
+diff -ru --strip-trailing-cr a/contracts/test/audit/gains/gov/FactoryMatrix.t.sol b/contracts/test/audit/gains/gov/FactoryMatrix.t.sol
+--- a/contracts/test/audit/gains/gov/FactoryMatrix.t.sol	2026-10-17 21:37:11.864144500 +0200
++++ b/contracts/test/audit/gains/gov/FactoryMatrix.t.sol	2026-10-17 21:37:12.109691100 +0200
+@@ -290,7 +290,7 @@
+         platform.create{value: GAS}(p, _noPermit());
+ 
+         // across factories: the same implementations behind a second factory
+-        GainsVaultFactory f2 = new GainsVaultFactory(
++        GainsVaultFactory f2 = GainsVaultFactory(deployCode("GainsVaultFactory.sol:GainsVaultFactory", abi.encode(
+             platformOwner,
+             address(vaultImpl),
+             address(policyImpl),
+@@ -301,7 +301,7 @@
+             protocolTreasury,
+             platformGuardian,
+             platformSentinel
+-        );
++        )));
+         vm.startPrank(platformOwner);
+         f2.setAgentRegistrar(registrar);
+         f2.setLauncherAllowed(launcher, true);
+diff -ru --strip-trailing-cr a/contracts/test/gains/GainsBase.t.sol b/contracts/test/gains/GainsBase.t.sol
+--- a/contracts/test/gains/GainsBase.t.sol	2026-10-17 21:37:08.069667500 +0200
++++ b/contracts/test/gains/GainsBase.t.sol	2026-10-17 21:37:08.349441100 +0200
+@@ -65,7 +65,7 @@
+         vm.warp(START);
+         vm.roll(1_000);
+         usdc = new MockUSDC();
+-        diamond = new MockGainsDiamond(IERC20(address(usdc)));
++        diamond = MockGainsDiamond(deployCode("GainsMocks.sol:MockGainsDiamond", abi.encode(IERC20(address(usdc)))));
+         usdc.mint(address(diamond), 100_000_000e6); // the gToken vault that pays profits
+ 
+         btcFeed = new MockChainlinkFeed(8, 100_000e8);
+@@ -77,10 +77,10 @@
+         sequencer = new MockChainlinkFeed(0, 0);
+         sequencer.setStatus(0, START - 30 days);
+ 
+-        vaultImpl = new GainsVault();
+-        policyImpl = new GainsVaultPolicy();
+-        lens = new GainsVaultLens();
+-        platform = new GainsVaultFactory(
++        vaultImpl = GainsVault(payable(deployCode("GainsVault.sol:GainsVault")));
++        policyImpl = GainsVaultPolicy(deployCode("GainsVaultPolicy.sol:GainsVaultPolicy"));
++        lens = GainsVaultLens(deployCode("GainsVaultLens.sol:GainsVaultLens"));
++        platform = GainsVaultFactory(deployCode("GainsVaultFactory.sol:GainsVaultFactory", abi.encode(
+             platformOwner,
+             address(vaultImpl),
+             address(policyImpl),
+@@ -91,7 +91,7 @@
+             protocolTreasury,
+             platformGuardian,
+             platformSentinel
+-        );
++        )));
+         vm.startPrank(platformOwner);
+         platform.setAssetCurated(BTC, true, address(btcFeed), BTC_MAX_AGE, 20);
+         platform.setAssetCurated(ETH, true, address(ethFeed), BTC_MAX_AGE, 20);
+diff -ru --strip-trailing-cr a/contracts/test/gains/GainsPolicyAndFactory.t.sol b/contracts/test/gains/GainsPolicyAndFactory.t.sol
+--- a/contracts/test/gains/GainsPolicyAndFactory.t.sol	2026-10-17 21:37:09.256784000 +0200
++++ b/contracts/test/gains/GainsPolicyAndFactory.t.sol	2026-10-17 21:37:09.605576800 +0200
+@@ -412,7 +412,7 @@
+     function setUp() public override {
+         super.setUp();
+         creator = vm.addr(creatorKey);
+-        factory = new GainsVaultFactory(
++        factory = GainsVaultFactory(deployCode("GainsVaultFactory.sol:GainsVaultFactory", abi.encode(
+             owner,
+             address(vaultImpl),
+             address(policyImpl),
+@@ -423,7 +423,7 @@
+             treasury,
+             guardian,
+             sentinel
+-        );
++        )));
+         vm.startPrank(owner);
+         factory.setLauncherAllowed(creator, true);
+         factory.setAssetCurated(BTC, true, address(btcFeed), BTC_MAX_AGE, 20);
+diff -ru --strip-trailing-cr a/contracts/test/gains/GainsRound4.t.sol b/contracts/test/gains/GainsRound4.t.sol
+--- a/contracts/test/gains/GainsRound4.t.sol	2026-10-17 21:37:10.492956800 +0200
++++ b/contracts/test/gains/GainsRound4.t.sol	2026-10-17 21:37:10.695318100 +0200
+@@ -415,7 +415,7 @@
+ 
+     function setUp() public override {
+         super.setUp();
+-        factory = new GainsVaultFactory(
++        factory = GainsVaultFactory(deployCode("GainsVaultFactory.sol:GainsVaultFactory", abi.encode(
+             owner,
+             address(vaultImpl),
+             address(policyImpl),
+@@ -426,7 +426,7 @@
+             treasury,
+             guardian,
+             sentinel
+-        );
++        )));
+         vm.startPrank(owner);
+         factory.setLauncherAllowed(creator, true);
+         factory.setAssetCurated(BTC, true, address(btcFeed), BTC_MAX_AGE, 20);

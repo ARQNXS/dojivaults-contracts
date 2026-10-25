@@ -1,0 +1,22 @@
+{
+  "acceptOwnershipCalldata": "0x79ba5097",
+  "agentRegistrar": "0xf3eE67E91C6ACC5ED1D11D3a315a91f0Caf25a2d",
+  "block": 517880549,
+  "chainId": 42161,
+  "deployer": "0x4377Df1967c1cE84Fd40231f27b25e322171071f",
+  "diamond": "0xFF162c694eAA571f685030649814282eA457f169",
+  "factory": "0x9bb1DcB64BFfa8c91b86ed2188E14e37e4B0f2f0",
+  "gainsNavLibrary": "0x88F2Cea7888469134b5ae1319A3e2ce760b5E5d8",
+  "lens": "0xF1c51D24643838cEBf318083351843752809A9B9",
+  "ownershipPendingAcceptance": true,
+  "platformGuardian": "0x1A7acB7966e6E3632694484dE261B70230eCD7ff",
+  "platformSentinel": "0xCB7cE935466bbF36Cb1a904d4eb9D214787A9c9a",
+  "policyImplementation": "0x7c70C741DBA302ce6ba588AA3bB5EFD2b18ed59f",
+  "protocolFeeRecipient": "0x18483B23B326c30dd80E59C617A1483842B7e797",
+  "sequencerFeed": "0xFdB631F5EE196F0ed6FAa767959853A9F217697D",
+  "timestamp": 1792856397,
+  "usdc": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+  "vaultGovernanceLibrary": "0xaF18d364f60916d85E2fE8D5eb0A2e9147C15CA6",
+  "vaultImplementation": "0x5b31C85c80d0E1A336905328Ca6C8276BfbEf06E",
+  "vaultLogicLibrary": "0xf0748F6A4879f2fA31E6F776F80C56C67FA63D2F"
+}

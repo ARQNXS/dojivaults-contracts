@@ -1,0 +1,20 @@
+{
+  "acceptOwnershipCalldata": "0x79ba5097",
+  "agentRegistrar": "0x6702656173C413EAeda0CCD9d2c034051Ae0d198",
+  "block": 49407893,
+  "chainId": 999,
+  "coreDepositWallet": "0x6B9E773128f453f5c2C60935Ee2DE2CBc5390A24",
+  "deployer": "0x4377Df1967c1cE84Fd40231f27b25e322171071f",
+  "factory": "0x3D16248e795100BeD74649EB0fA79F145F3b83Ad",
+  "lens": "0x48aC27e3DcbB569cD633eaa90b4d3410d024BC79",
+  "ownershipPendingAcceptance": true,
+  "platformGuardian": "0x1A7acB7966e6E3632694484dE261B70230eCD7ff",
+  "platformSentinel": "0x8fEe38402cA8BB788b144af1ab7023e7B46F95F1",
+  "policyImplementation": "0x3BBB5942fF4586e72AC6219517a9f5e4fF375fC8",
+  "protocolFeeRecipient": "0x18483B23B326c30dd80E59C617A1483842B7e797",
+  "timestamp": 1792854600,
+  "usdc": "0xb88339CB7199b77E23DB6E890353E22632Ba630f",
+  "vaultGovernanceLibrary": "0x95Fb1d1f1B6BC87A85aF5099b027A279d6D145DE",
+  "vaultImplementation": "0x2d0EbeDbb28ca69AFf110926c70ed1f2B48574FD",
+  "vaultLogicLibrary": "0xEd549FF416f2A93a83d1C712cA7053Cd661dd007"
+}

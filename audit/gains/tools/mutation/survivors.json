@@ -1,0 +1,27 @@
+{
+ "GainsVaultLogic#952": {
+  "sec": true,
+  "class": "test gap",
+  "why": "settle math (carry run). After a priced settle closes a carry run, carryOrigin must reset to 0. With 1, the next redemption-only settle does not open a new run (`if (carryOrigin == 0)` is skipped), carried requests get carriedFrom = 1, and every later priced settle rewrites carryPricedIn[0]: deposits carried in a SECOND carry run are priced in the wrong epoch at claim. No test runs two separate carry runs (loss breach -> priced settle -> loss breach again -> priced settle) and then claims both. The code is correct; add that test."
+ },
+ "GainsVaultLogic#2009": {
+  "sec": true,
+  "class": "test gap, closed (killed after the AccessMatrix fix)",
+  "why": "access check in flatten. With `if (false)` a non-zero slippageBps is no longer restricted to the manager / the guardian in emergency (the guardian outside emergency and, in a breach, the owner / sentinel / operator could flatten with a custom slippage up to maxFlattenSlippageBps). AccessMatrix.t.sol has exactly this cell (f == 16) and logged the MISMATCH in every state, but its storage `mismatches` counter was reset by vm.revertToState in _enter, so the test passed. With the fixed AccessMatrix (counter is a local) the mutant is KILLED: all 12 test_accessMatrix_* fail (1 to 4 mismatches each). Regression PoC: test/audit/gains/static/RevertToStateCounter.t.sol."
+ },
+ "GainsVaultPolicy#207": {
+  "sec": true,
+  "class": "test gap",
+  "why": "price check. The mutant shrinks the market-order band around the Chainlink mark to ~0 (stricter, so only a liveness change). Tests only check orders far outside the band; none checks that an expectedPrice inside the band but off the mark (e.g. mark x (1 + maxSlippageBps/2)) is accepted, nor the exact band edge. Add a boundary test for both sides."
+ },
+ "GainsVaultPolicy#753": {
+  "sec": true,
+  "class": "test gap (no security effect)",
+  "why": "timelock check. Without `pendingTimelockEta = 0` the applied proposal stays applicable inside its grace window. A re-apply always writes the same value: the only other writer of timelockDelay (proposeTimelockDelay, raise path) clears pendingTimelockEta, and the lower path replaces the pending pair, so timelockDelay cannot be changed by it. Observable only through the public pendingTimelockEta getter and a second apply not reverting NothingPending, which no test checks."
+ },
+ "GainsVaultFactory#684": {
+  "sec": true,
+  "class": "equivalent",
+  "why": "roles. In setGuardian the deleted `_checkRoles(owner(), ...)` checks guardian != sentinel, sentinel != owner and registrar vs owner/guardian/sentinel. The kept `_checkRoles(pendingOwner(), ...)` checks guardian != sentinel and registrar vs guardian/sentinel in both of its branches; sentinel != owner and registrar != owner do not depend on the new guardian and are invariants kept by setSentinel / setAgentRegistrar / transferOwnership (each checks owner and pending owner) and the constructor. No reachable state distinguishes the mutant."
+ }
+}

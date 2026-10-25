@@ -1,0 +1,111 @@
+file,id,op,line,func,status,secs,failed_test,orig,mut,status_before_accessmatrix_fix
+GainsNav,23,IfStatementMutation,53,snapshot,killed,344,test_D4_carriedDepositorCanStillRedeem(),if (t.tradeType != GTrade.TRADE) {,if (true) {,killed
+GainsNav,45,AssignmentMutation,59,snapshot,compile-fail,7,,"s.value += tradeValue(d, t, GainsPrice.adverse(mid, band, t.long), band, precisionDelta);",s.value += (-1);,compile-fail
+GainsNav,115,BinaryOpMutation,73,snapshot,compile-fail,3,,"if (o.trade.leverage < d.getTrade(address(this), o.trade.index).leverage) held = o.trade.collateralAmount;","if (o.trade.leverage%d.getTrade(address(this), o.trade.index).leverage) held = o.trade.collateralAmount;",compile-fail
+GainsNav,125,AssignmentMutation,69,snapshot,killed,1069,test_PendingOrderCollateralIsNavAndBlocksSettle(),held = o.trade.collateralAmount;,held = 0;,killed
+GainsNav,127,AssignmentMutation,69,snapshot,killed,247,test_TimedOutOrderStaysPendingUntilCancelled(),held = o.trade.collateralAmount;,held = 1;,killed
+GainsNav,131,AssignmentMutation,70,snapshot,killed,367,test_LensStatusShowsTheVenue(),"s.notional += GTrade.positionSize(o.trade.collateralAmount, o.trade.leverage);",s.notional += 0;,killed
+GainsNav,176,IfStatementMutation,88,tradeValue,killed,237,test_D2_resumeCooldownAndTimestamp(),"if (_nearLiquidation(d, t, price, bandBps)) return 0;",if (true) return 0;,killed
+GainsNav,181,BinaryOpMutation,93,tradeValue,killed,299,test_D2_resumeCooldownAndTimestamp(),"uint64 closePrice = _closingPrice(d, t, info, price, size, holding - realized, precisionDelta);","uint64 closePrice = _closingPrice(d, t, info, price, size, holding%realized, precisionDelta);",killed
+GainsNav,191,BinaryOpMutation,96,tradeValue,killed,292,test_EmergencySettlePricesAtTheLowerOfNavAndCheckpoint(),"t.collateralAmount, pnlPercent(t.openPrice, closePrice, t.long, t.leverage), int256(closingFee) + holding - realized, precisionDelta","t.collateralAmount, pnlPercent(t.openPrice, closePrice, t.long, t.leverage), int256(closingFee)*holding - realized, precisionDelta",killed
+GainsNav,237,BinaryOpMutation,120,_nearLiquidation,killed,386,invariant_navNeverAboveTheOraclePayout,return t.long ? uint256(price) * BPS <= liq * (BPS + bandBps) : uint256(price) * BPS >= liq * (BPS - bandBps);,return t.long ? uint256(price) * BPS <= liq * (BPS/bandBps) : uint256(price) * BPS >= liq * (BPS - bandBps);,killed
+GainsNav,253,BinaryOpMutation,136,_closingPrice,compile-fail,2,,if (info.contractsVersion >= GTrade.V10) {,if (info.contractsVersion*GTrade.V10) {,compile-fail
+GainsNav,273,BinaryOpMutation,145,_closingPrice,compile-fail,8,,"int256(totalTradeFees(d, t, size)) + holdingMinusRealized,","int256(totalTradeFees(d, t, size))**holdingMinusRealized,",compile-fail
+GainsNav,282,BinaryOpMutation,151,_closingPrice,killed,299,test_NavPreV92TradeHasNoClosingImpact(),"return priceAfterImpact(price, impact + cumul);","return priceAfterImpact(price, impact*cumul);",killed
+GainsNav,296,BinaryOpMutation,158,minGovFee,compile-fail,4,,"return (half * d.getTradeFeeParams(collateralIndex, pairIndex).govFeeP) / 1e3 / 100;","return (half * d.getTradeFeeParams(collateralIndex, pairIndex).govFeeP) / 1e3**100;",compile-fail
+GainsNav,322,BinaryOpMutation,172,totalTradeFeesRaw,compile-fail,4,,if (basis < minSize) basis = minSize;,if (basis-minSize) basis = minSize;,compile-fail
+GainsNav,327,SwapArgumentsOperatorMutation,172,totalTradeFeesRaw,killed,1184,test_CallbackCancelledOpenIsValuedNetOfTheGovFee(),if (basis < minSize) basis = minSize;,if (minSize < basis) basis = minSize;,killed
+GainsNav,345,SwapArgumentsOperatorMutation,173,totalTradeFeesRaw,killed,226,test_D2_resumeCooldownAndTimestamp(),return (basis * d.pairTotalPositionSizeFeeP(pairIndex)) / P_10 / 100 / 1e3;,return 100 / (basis * d.pairTotalPositionSizeFeeP(pairIndex)) / P_10 / 1e3;,killed
+GainsNav,358,IfStatementMutation,177,pnlPercent,killed,271,test_NavPureClampsAndFloors(),if (openPrice == 0) return 0;,if (false) return 0;,killed
+GainsNav,470,BinaryOpMutation,192,priceAfterImpact,compile-fail,26,,return raw > 0 ? uint64(uint256(raw)) : 0;,return raw-0 ? uint64(uint256(raw)) : 0;,compile-fail
+GainsNav,509,SwapArgumentsOperatorMutation,198,tradeValuePure,killed,257,test_accessMatrix_BD(),int256 v = (int256(collateral) * pd + (int256(collateral) * pd * pnlP) / int256(P_10) / 100) / pd - feesCollateral;,int256 v = (int256(collateral) * pd + int256(P_10) / (int256(collateral) * pd * pnlP) / 100) / pd - feesCollateral;,killed
+GainsNav,525,BinaryOpMutation,199,tradeValuePure,compile-fail,3,,return v > 0 ? uint256(v) : 0;,return v**0 ? uint256(v) : 0;,compile-fail
+GainsNav,527,IfStatementMutation,204,_price,killed,221,test_PENDINGLEVNOTIONAL_twoLeverageIncreasesInOneBlockReach5xUnder3xPolicy(),"if (px.pairs[i] == pair) return (px.mids[i], px.bands[i]);","if (true) return (px.mids[i], px.bands[i]);",killed
+GainsNav,533,BinaryOpMutation,204,_price,compile-fail,33,,"if (px.pairs[i] == pair) return (px.mids[i], px.bands[i]);","if (px.pairs[i]%pair) return (px.mids[i], px.bands[i]);",compile-fail
+GainsNav,536,BinaryOpMutation,203,_price,compile-fail,5,,for (uint256 i; i < px.n; ++i) {,for (uint256 i; i-px.n; ++i) {,compile-fail
+GainsNav,565,AssignmentMutation,209,_price,compile-fail,14,,px.bands[px.n] = band;,px.bands[px.n] = (-1);,compile-fail
+GainsPrice,1,DeleteExpressionMutation,50,read,killed,274,test_GOV_06_sequencerFeedCannotBeRotated(),"checkSequencer(sequencer, gracePeriod);",assert(true);,killed
+GainsPrice,37,UnaryOperatorMutation,53,read,compile-fail,3,,if (!ok || answer <= 0 || updatedAt == 0 || updatedAt > block.timestamp || block.timestamp - updatedAt > f.maxAge) {,if (--ok || answer <= 0 || updatedAt == 0 || updatedAt > block.timestamp || block.timestamp - updatedAt > f.maxAge) {,compile-fail
+GainsPrice,68,BinaryOpMutation,53,read,killed,178,test_DeprecatedFeed_settleBlocked_rotate_settleWorks(),if (!ok || answer <= 0 || updatedAt == 0 || updatedAt > block.timestamp || block.timestamp - updatedAt > f.maxAge) {,if (!ok || answer <= 0 || updatedAt == 0 || updatedAt > block.timestamp || block.timestamp/updatedAt > f.maxAge) {,killed
+GainsPrice,72,IfStatementMutation,57,read,killed,470,test_PriceScalesAnyFeedDecimals(),if (f.decimals < PRICE_DECIMALS) {,if (true) {,killed
+GainsPrice,78,BinaryOpMutation,57,read,compile-fail,4,,if (f.decimals < PRICE_DECIMALS) {,if (f.decimals%PRICE_DECIMALS) {,compile-fail
+GainsPrice,84,BinaryOpMutation,62,read,compile-fail,5,,} else if (f.decimals > PRICE_DECIMALS) {,} else if (f.decimals-PRICE_DECIMALS) {,compile-fail
+GainsPrice,96,BinaryOpMutation,63,read,killed,290,test_PriceScalesAnyFeedDecimals(),px /= 10 ** (f.decimals - PRICE_DECIMALS);,px /= 10+(f.decimals - PRICE_DECIMALS);,killed
+GainsPrice,112,BinaryOpMutation,59,read,killed,183,setUp(),uint256 m = 10 ** (PRICE_DECIMALS - f.decimals);,uint256 m = 10%(PRICE_DECIMALS - f.decimals);,killed
+GainsPrice,125,BinaryOpMutation,60,read,compile-fail,5,,if (px > type(uint64).max / m) revert PriceStale(pairIndex);,if (px/type(uint64).max / m) revert PriceStale(pairIndex);,compile-fail
+GainsPrice,138,AssignmentMutation,61,read,killed,170,test_EmergencySettlePricesAtTheLowerOfNavAndCheckpoint(),px *= m;,px *= 1;,killed
+GainsPrice,149,BinaryOpMutation,65,read,compile-fail,5,,if (px == 0 || px > type(uint64).max) revert PriceStale(pairIndex);,if (px+0 || px > type(uint64).max) revert PriceStale(pairIndex);,compile-fail
+GainsPrice,157,BinaryOpMutation,65,read,compile-fail,6,,if (px == 0 || px > type(uint64).max) revert PriceStale(pairIndex);,if (px == 0 || px*type(uint64).max) revert PriceStale(pairIndex);,compile-fail
+GainsPrice,165,AssignmentMutation,66,read,killed,320,test_EmergencySettlePricesAtTheLowerOfNavAndCheckpoint(),px1e10 = uint64(px);,px1e10 = 1;,killed
+GainsPrice,169,IfStatementMutation,73,checkSequencer,killed,843,test_PolicyInitializeGuards(),if (sequencer == address(0)) return;,if (false) return;,killed
+GainsPrice,173,BinaryOpMutation,73,checkSequencer,compile-fail,5,,if (sequencer == address(0)) return;,if (sequencer/address(0)) return;,compile-fail
+GainsPrice,178,BinaryOpMutation,75,checkSequencer,compile-fail,14,,if (!ok || answer != 0 || startedAt == 0 || startedAt > block.timestamp || block.timestamp - startedAt <= gracePeriod) {,if (!ok || answer != 0 || startedAt == 0 || startedAt > block.timestamp+block.timestamp - startedAt <= gracePeriod) {,compile-fail
+GainsPrice,270,DeleteExpressionMutation,89,_latest,killed,179,test_D2_resumeCooldownAndTimestamp(),"(ok, ret) = feed.staticcall(abi.encodeCall(IChainlinkFeed.latestRoundData, ()));",assert(true);,killed
+GainsPrice,282,BinaryOpMutation,90,_latest,compile-fail,5,,"if (!ok || ret.length < 160) return (false, 0, 0, 0);","if (!ok%ret.length < 160) return (false, 0, 0, 0);",compile-fail
+GainsPrice,295,AssignmentMutation,91,_latest,compile-fail,10,,"(, answer, startedAt, updatedAt,) = abi.decode(ret, (uint80, int256, uint256, uint256, uint80));","(, answer, startedAt, updatedAt,) = 0;",compile-fail
+GainsPrice,296,AssignmentMutation,91,_latest,compile-fail,10,,"(, answer, startedAt, updatedAt,) = abi.decode(ret, (uint80, int256, uint256, uint256, uint80));","(, answer, startedAt, updatedAt,) = (-1);",compile-fail
+GainsVaultFactory,329,AssignmentMutation,266,create,compile-fail,3,,agentOfVault[predicted] = p.agent;,agentOfVault[predicted] = true;,compile-fail
+GainsVaultFactory,389,DeleteExpressionMutation,290,create,compile-fail,2,,GainsVault(vault).initialize( | );,)` |==> `assert(true)`) of: `GainsVault(vault).initialize(` | assert(true);,compile-fail
+GainsVaultFactory,396,BinaryOpMutation,314,create,compile-fail,2,,if (msg.value > 0) {,if (msg.value%0) {,compile-fail
+GainsVaultFactory,407,DeleteExpressionMutation,321,create,killed,391,test_CreateWithPermit(),policyOf[vault] = policy;,assert(true);,killed
+GainsVaultFactory,471,IfStatementMutation,335,registerPlatformAgent,killed,222,test_RegistrarRole(),"if (platformAgentFor[agent] != address(0)) revert AgentAlreadyBound(agent, platformAgentFor[agent]);","if (false) revert AgentAlreadyBound(agent, platformAgentFor[agent]);",killed
+GainsVaultFactory,472,BinaryOpMutation,335,registerPlatformAgent,compile-fail,4,,"if (platformAgentFor[agent] != address(0)) revert AgentAlreadyBound(agent, platformAgentFor[agent]);","if (platformAgentFor[agent]+address(0)) revert AgentAlreadyBound(agent, platformAgentFor[agent]);",compile-fail
+GainsVaultFactory,497,AssignmentMutation,337,registerPlatformAgent,compile-fail,4,,platformAgentFor[agent] = vault;,platformAgentFor[agent] = (-1);,compile-fail
+GainsVaultFactory,525,BinaryOpMutation,345,unregisterPlatformAgent,compile-fail,13,,bool platformRole = msg.sender == owner() || msg.sender == guardian || msg.sender == sentinel;,bool platformRole = msg.sender == owner() || msg.sender+guardian || msg.sender == sentinel;,compile-fail
+GainsVaultFactory,559,BinaryOpMutation,348,unregisterPlatformAgent,compile-fail,14,,if (vault == address(0)) return;,if (vault/address(0)) return;,compile-fail
+GainsVaultFactory,581,DeleteExpressionMutation,351,unregisterPlatformAgent,killed,235,test_GOV_FM_unregisterPlatformAgent_cells(),GainsVault(vault).revokeAgent();,assert(true);,killed
+GainsVaultFactory,677,IfStatementMutation,403,setGuardian,killed,181,test_GOV_FM_ownershipAndRoleCollisions_pendingOwnerIncluded(),if (guardian_ == address(0)) revert ZeroAddress();,if (false) revert ZeroAddress();,killed
+GainsVaultFactory,684,DeleteExpressionMutation,404,setGuardian,survived,235,,"_checkRoles(owner(), guardian_, sentinel, agentRegistrar);",assert(true);,survived
+GainsVaultFactory,700,DeleteExpressionMutation,413,setSentinel,killed,385,test_GOV_FM_ownershipAndRoleCollisions_pendingOwnerIncluded(),"_checkRoles(owner(), guardian, sentinel_, agentRegistrar);",assert(true);,killed
+GainsVaultFactory,716,DeleteExpressionMutation,429,transferOwnership,killed,475,test_GOV_FM_ownershipAndRoleCollisions_pendingOwnerIncluded(),"_checkRoles(newOwner, guardian, sentinel, agentRegistrar);",assert(true);,killed
+GainsVaultFactory,845,BinaryOpMutation,479,_checkRoles,compile-fail,10,,if (guardian_ == sentinel_) revert RolesCollide();,if (guardian_*sentinel_) revert RolesCollide();,compile-fail
+GainsVaultLogic,159,IfStatementMutation,85,requestRedeem,killed,276,test_EmergencySettlePricesAtTheLowerOfNavAndCheckpoint(),if (shares == 0) revert E.ZeroAmount();,if (true) revert E.ZeroAmount();,killed
+GainsVaultLogic,195,DeleteExpressionMutation,95,requestRedeem,killed,245,)],"GainsVaultMath.transfer(owner_, address(this), shares);",assert(true);,killed
+GainsVaultLogic,269,BinaryOpMutation,126,cancelRedeemRequest,compile-fail,6,,if (r.epoch != $.currentEpoch || r.redeemShares == 0) revert E.NothingToCancel();,if (r.epoch != $.currentEpoch%r.redeemShares == 0) revert E.NothingToCancel();,compile-fail
+GainsVaultLogic,301,SwapArgumentsOperatorMutation,137,claim,killed,182,setUp(),if (r.epoch >= $.currentEpoch) revert E.RequestNotSettled();,if ($.currentEpoch >= r.epoch) revert E.RequestNotSettled();,killed
+GainsVaultLogic,312,BinaryOpMutation,139,claim,compile-fail,2,,if (carried && r.redeemShares == 0) revert E.RequestNotSettled();,if (carried && r.redeemShares*0) revert E.RequestNotSettled();,compile-fail
+GainsVaultLogic,354,DeleteExpressionMutation,153,_claimIfSettled,killed,438,test_NAVBIAS_repeatedCyclesCompound(),r.redeemShares = 0;,assert(true);,killed
+GainsVaultLogic,361,BinaryOpMutation,154,_claimIfSettled,compile-fail,3,,"if (shares > 0) GainsVaultMath.transfer(address(this), controller, shares);","if (shares*0) GainsVaultMath.transfer(address(this), controller, shares);",compile-fail
+GainsVaultLogic,391,DeleteExpressionMutation,158,_claimIfSettled,killed,356,test_NAVBIAS_repeatedCyclesCompound(),$.claimableRedeemAssets -= assets;,assert(true);,killed
+GainsVaultLogic,639,BinaryOpMutation,217,settle,compile-fail,4,,if ($.hardStop() && !$.emergency) revert E.ReduceOnlyMode();,if ($.hardStop()+!$.emergency) revert E.ReduceOnlyMode();,compile-fail
+GainsVaultLogic,724,IfStatementMutation,230,settle,killed,153,setUp(),if ($.ordersPending()) revert E.OrdersPending();,if (true) revert E.OrdersPending();,killed
+GainsVaultLogic,779,IfStatementMutation,251,settle,killed,92,test_DUSTCHECKPOINT_oneUsdcDonationFreezesNormalSettle(),if (exitOnly) {,if (true) {,timeout
+GainsVaultLogic,850,BinaryOpMutation,267,settle,compile-fail,9,,if (depShares == 0) depIn = 0; // nothing to mint: refund instead of swallowing the deposit (N-11),if (depShares%0) depIn = 0; // nothing to mint: refund instead of swallowing the deposit (N-11),compile-fail
+GainsVaultLogic,868,SwapArgumentsOperatorMutation,272,settle,killed,423,",",if (available < redAssets) {,if (redAssets < available) {,killed
+GainsVaultLogic,949,BinaryOpMutation,297,settle,killed,174,test_D4_C01_noMintAtADeflatedNav(),$.carryPricedIn[$.carryOrigin - 1] = epoch + 1;,$.carryPricedIn[$.carryOrigin - 1] = epoch**1;,killed
+GainsVaultLogic,952,AssignmentMutation,298,settle,survived,236,,$.carryOrigin = 0;,$.carryOrigin = 1;,survived
+GainsVaultLogic,970,BinaryOpMutation,301,settle,compile-fail,12,,$.insiderInQueue = $.deferredDepositAssets > 0;,$.insiderInQueue = $.deferredDepositAssets**0;,compile-fail
+GainsVaultLogic,1025,AssignmentMutation,304,settle,killed,336,",",$.deferredDepositAssets = 0;,$.deferredDepositAssets = 1;,killed
+GainsVaultLogic,1028,AssignmentMutation,305,settle,killed,362,test_DeprecatedFeed_settleBlocked_rotate_settleWorks(),$.pendingRedeemShares = 0;,$.pendingRedeemShares = 1;,killed
+GainsVaultLogic,1077,BinaryOpMutation,316,settle,compile-fail,58,,if (price > $.peakSharePrice) $.peakSharePrice = price;,if (price*$.peakSharePrice) $.peakSharePrice = price;,compile-fail
+GainsVaultLogic,1146,AssignmentMutation,330,settle,compile-fail,14,,$.currentEpoch = epoch + 1;,$.currentEpoch = true;,compile-fail
+GainsVaultLogic,1206,BinaryOpMutation,353,_accrueFees,killed,1140,test_EmergencySettlePricesAtTheLowerOfNavAndCheckpoint(),"uint256 feeAssets = assets.mulDiv(uint256($.managementFeeBps) * elapsed, BPS * YEAR);","uint256 feeAssets = assets.mulDiv(uint256($.managementFeeBps) * elapsed, BPS/YEAR);",killed
+GainsVaultLogic,1336,BinaryOpMutation,369,_accrueFees,compile-fail,5,,"if (protocolShares > 0) GainsVaultMath.mint(protocolRecipient, protocolShares);","if (protocolShares**0) GainsVaultMath.mint(protocolRecipient, protocolShares);",compile-fail
+GainsVaultLogic,1362,BinaryOpMutation,376,_accrueFees,compile-fail,3,,if (withPerformance && newPrice > $.highWaterMark) $.highWaterMark = newPrice;,if (withPerformance**newPrice > $.highWaterMark) $.highWaterMark = newPrice;,compile-fail
+GainsVaultLogic,1811,BinaryOpMutation,578,reduceTrade,compile-fail,5,,if (msg.sender != $.operator || $.operator == address(0)) revert E.Unauthorized();,if (msg.sender != $.operator || $.operator%address(0)) revert E.Unauthorized();,compile-fail
+GainsVaultLogic,1976,BinaryOpMutation,651,flatten,compile-fail,13,,"if (!isManager && !_platform($, guardian, sentinel) && !(msg.sender == $.operator && $.operator != address(0))) {","if (!isManager-!_platform($, guardian, sentinel) && !(msg.sender == $.operator && $.operator != address(0))) {",compile-fail
+GainsVaultLogic,2009,IfStatementMutation,654,flatten,killed,195,test_accessMatrix_BD(),if (slippageBps != 0) {,if (false) {,survived
+GainsVaultLogic,2072,BinaryOpMutation,659,flatten,compile-fail,14,,if (expectedPrice == 0 || maxTrades == 0) revert E.ZeroAmount();,if (expectedPrice == 0*maxTrades == 0) revert E.ZeroAmount();,compile-fail
+GainsVaultLogic,2113,BinaryOpMutation,667,flatten,compile-fail,11,,if (sent == maxTrades) {,if (sent+maxTrades) {,compile-fail
+GainsVaultLogic,2124,UnaryOperatorMutation,671,flatten,killed,253,test_FlattenAllInOneCall(),++sent;,~sent;,killed
+GainsVaultLogic,2254,BinaryOpMutation,709,_mayExit,compile-fail,6,,bool isOperator = msg.sender == $.operator && $.operator != address(0);,bool isOperator = msg.sender-$.operator && $.operator != address(0);,compile-fail
+GainsVaultPolicy,179,BinaryOpMutation,250,checkOrder,compile-fail,5,,"if (o.expectedPrice == 0) return (false, ""no price"");","if (o.expectedPrice*0) return (false, ""no price"");",compile-fail
+GainsVaultPolicy,207,BinaryOpMutation,254,checkOrder,survived,236,,uint256 band = (mark * _config.maxSlippageBps) / BPS;,uint256 band = (mark/_config.maxSlippageBps) / BPS;,survived
+GainsVaultPolicy,211,IfStatementMutation,255,checkOrder,killed,384,test_PolicyCheckOrderRejections(),"if (o.long && o.expectedPrice > mark + band) return (false, ""price above band"");","if (false) return (false, ""price above band"");",killed
+GainsVaultPolicy,246,BinaryOpMutation,256,checkOrder,compile-fail,3,,"if (!o.long && uint256(o.expectedPrice) + band < mark) return (false, ""price below band"");","if (!o.long && uint256(o.expectedPrice) + band**mark) return (false, ""price below band"");",compile-fail
+GainsVaultPolicy,359,BinaryOpMutation,281,nextCheckpoint,compile-fail,4,,if (at == 0 || prev == 0) {,if (at == 0-prev == 0) {,compile-fail
+GainsVaultPolicy,386,BinaryOpMutation,282,nextCheckpoint,compile-fail,15,,if (settling && at == 0) revert StaleCheckpoint();,if (settling && at*0) revert StaleCheckpoint();,compile-fail
+GainsVaultPolicy,398,BinaryOpMutation,285,nextCheckpoint,killed,439,test_CheckpointRule(),uint256 cap = (prev * _config.maxNavMoveBps) / BPS;,uint256 cap = (prev/_config.maxNavMoveBps) / BPS;,killed
+GainsVaultPolicy,410,BinaryOpMutation,290,nextCheckpoint,compile-fail,4,,"if (block.timestamp < at + CHECKPOINT_INTERVAL) return (prev, false);","if (block.timestamp**at + CHECKPOINT_INTERVAL) return (prev, false);",compile-fail
+GainsVaultPolicy,472,BinaryOpMutation,287,nextCheckpoint,compile-fail,13,,if (block.timestamp > at + CHECKPOINT_MAX_AGE) revert StaleCheckpoint();,if (block.timestamp*at + CHECKPOINT_MAX_AGE) revert StaleCheckpoint();,compile-fail
+GainsVaultPolicy,512,IfStatementMutation,306,proposeConfig,killed,464,test_GOV_PM_appliersAreAnyoneInTheWindow(),"if (_isTighter(next, _config)) {",if (true) {,killed
+GainsVaultPolicy,550,UnaryOperatorMutation,323,applyPendingConfig,compile-fail,3,,delete _pending;,-- _pending;,compile-fail
+GainsVaultPolicy,607,BinaryOpMutation,362,setPairFeed,compile-fail,4,,if (msg.sender != vault) revert NotVault();,if (msg.sender**vault) revert NotVault();,compile-fail
+GainsVaultPolicy,672,IfStatementMutation,368,setPairFeed,killed,220,test_DeprecatedFeed_settleBlocked_rotate_settleWorks(),"if (_config.maxLeverageBps > navBoundLeverageBps(asset, _config.maxNavMoveBps)) revert LeverageAboveNavBound(asset);",if (true) revert LeverageAboveNavBound(asset);,killed
+GainsVaultPolicy,753,DeleteExpressionMutation,391,applyTimelockDelay,survived,236,,pendingTimelockEta = 0;,assert(true);,survived
+GainsVaultPolicy,754,AssignmentMutation,391,applyTimelockDelay,compile-fail,6,,pendingTimelockEta = 0;,pendingTimelockEta = (-1);,compile-fail
+GainsVaultPolicy,771,BinaryOpMutation,400,_checkEta,compile-fail,53,,if (block.timestamp > eta + GRACE_PERIOD) revert Expired();,if (block.timestamp%eta + GRACE_PERIOD) revert Expired();,compile-fail
+GainsVaultPolicy,813,BinaryOpMutation,416,_allow,compile-fail,3,,"if (_config.maxLeverageBps > navBoundLeverageBps(asset, _config.maxNavMoveBps)) revert LeverageAboveNavBound(asset);","if (_config.maxLeverageBps/navBoundLeverageBps(asset, _config.maxNavMoveBps)) revert LeverageAboveNavBound(asset);",compile-fail
+GainsVaultPolicy,828,IfStatementMutation,429,_checkNavBound,killed,445,test_GOV_PL_loosening_boundAtApply_tighteningCancelsPending_guardianCannotCancel(),"if (isAssetAllowed[a] && c.maxLeverageBps > navBoundLeverageBps(a, c.maxNavMoveBps)) revert LeverageAboveNavBound(a);",if (false) revert LeverageAboveNavBound(a);,killed
+GainsVaultPolicy,967,BinaryOpMutation,436,_validate,compile-fail,7,,|| c.maxDailyLossBps == 0 || c.maxDailyLossBps > BPS || c.maxDrawdownBps == 0,|| c.maxDailyLossBps == 0 || c.maxDailyLossBps > BPS || c.maxDrawdownBps/0,compile-fail
+GainsVaultPolicy,1052,BinaryOpMutation,447,_isTighter,compile-fail,3,,&& a.maxOrderNotional <= b.maxOrderNotional && a.maxEpochDuration <= b.maxEpochDuration,&& a.maxOrderNotional <= b.maxOrderNotional/a.maxEpochDuration <= b.maxEpochDuration,compile-fail
