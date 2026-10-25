@@ -243,6 +243,9 @@ contract HyperVault is Initializable, ERC20Upgradeable, Ownable2StepUpgradeable,
     /// @notice Manager or platform agent. An order that adds risk runs the risk check first (HL-PROXY, the HL twin of
     ///         Gains GR2-KEY-01): when that check puts the vault in reduce only the order is not sent (OrderRefused)
     ///         and the breach stays recorded. In a breach that already exists such an order reverts, as before.
+    /// @dev `limitPx` and `sz` are both in 1e8 scale, the units the HyperCore limit order action takes, and are
+    ///      forwarded unchanged. `flatten` is the only path that starts from a raw precompile value, so it is the
+    ///      only one that converts (`PxMath.size1e8`, `PxMath.boundedLimitPx1e8`).
     function placeOrder(uint32 asset_, bool isBuy, uint64 limitPx, uint64 sz, bool reduceOnly, uint8 tif, uint128 cloid) external {
         bool trader = msg.sender == $.manager || (msg.sender == $.agent && $.agent != address(0));
         if (!reduceOnly && trader && !$.breached && !$.emergency) {
